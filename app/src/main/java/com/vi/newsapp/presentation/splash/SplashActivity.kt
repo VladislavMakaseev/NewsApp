@@ -1,19 +1,22 @@
 package com.vi.newsapp.presentation.splash
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.vi.newsapp.presentation.main.MainActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashActivity : AppCompatActivity() {
 
+    private val splashViewModel: SplashViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    }
 
-    override fun onResume() {
-        super.onResume()
-        toNextSection()
+        splashViewModel.articlesAddedLiveData.observe(this, {
+            toNextSection()
+        })
+
     }
 
     private fun toNextSection() {
