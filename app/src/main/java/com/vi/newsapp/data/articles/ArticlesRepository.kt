@@ -7,6 +7,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import com.vi.newsapp.domain.articles.Article as DomainArticles
@@ -58,7 +60,10 @@ class ArticlesRepository(
                     description = article.description ?: "",
                     url = article.url ?: "",
                     urlToImage = article.urlToImage ?: "",
-                    publishedAt = article.publishedAt ?: "",
+                    publishedAt = LocalDateTime.parse(
+                        article.publishedAt,
+                        DateTimeFormatter.ISO_DATE_TIME
+                    ),
                     content = article.content ?: ""
                 )
             }

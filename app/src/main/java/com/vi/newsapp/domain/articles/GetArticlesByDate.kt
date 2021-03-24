@@ -7,7 +7,7 @@ class GetArticlesByDate(
 ) : OutputUseCase<List<Article>> {
 
     override suspend fun execute(): List<Article> {
-        return articlesDataSource.getArticles()
+        return articlesDataSource.getArticles().sortedBy { it.publishedAt }
     }
 
 }

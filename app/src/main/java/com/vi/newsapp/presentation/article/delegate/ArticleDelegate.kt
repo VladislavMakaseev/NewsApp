@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 import com.vi.newsapp.databinding.ItemArticleBinding
 import com.vi.newsapp.domain.articles.Article
+import java.time.format.DateTimeFormatter
 
 class ArticleDelegate(
     private val context: Context,
@@ -15,6 +16,7 @@ class ArticleDelegate(
 ) : AbsListItemAdapterDelegate<Article, Any, ArticleDelegate.ArticleViewHolder>() {
 
     private val layoutInflater = LayoutInflater.from(context)
+    private val formatter = DateTimeFormatter.ISO_DATE_TIME
 
     interface OnClickListener {
         fun onItemClick(article: Article, position: Int)
@@ -43,7 +45,7 @@ class ArticleDelegate(
                 .error(android.R.drawable.stat_notify_error)
                 .into(ivImage)
 
-            tvDate.text = article.publishedAt
+            tvDate.text = formatter.format(article.publishedAt)
 
             itemView.setOnClickListener { listener.onItemClick(article, adapterPosition) }
         }

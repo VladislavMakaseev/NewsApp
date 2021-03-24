@@ -14,11 +14,13 @@ import com.vi.newsapp.databinding.FragmentArticleDetailBinding
 import com.vi.newsapp.domain.articles.Article
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import java.time.format.DateTimeFormatter
 
 class DetailArticleFragment : Fragment() {
 
     private val args: DetailArticleFragmentArgs by navArgs()
     private val viewModel: DetailArticleViewModel by viewModel { parametersOf(args.id) }
+    private val formatter = DateTimeFormatter.ISO_DATE_TIME
 
     private var _binding: FragmentArticleDetailBinding? = null
     private val binding get() = _binding!!
@@ -60,7 +62,7 @@ class DetailArticleFragment : Fragment() {
             .into(binding.ivImage)
 
         binding.tvContent.text = article.content
-        binding.tvDate.text = article.publishedAt
+        binding.tvDate.text = formatter.format(article.publishedAt)
     }
 
     private fun showError(message: String?) {
