@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
@@ -45,6 +46,22 @@ class ArticlesFragment : Fragment() {
         adapter = ArticlesAdapter()
         val ctx = requireContext()
 
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                /*ignore*/
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                if (newText.isBlank()) {
+                    viewModel.allArticles()
+                } else {
+                    viewModel.filterArticles(newText)
+                }
+                return false
+            }
+        })
+
         adapter.delegatesManager
             .addDelegate(
                 ArticleDelegate(
@@ -67,6 +84,7 @@ class ArticlesFragment : Fragment() {
             showOrHideLoading(isLoading)
         })
         viewModel.articlesLiveData.observe(viewLifecycleOwner, { items ->
+            adapter.clear()
             adapter.add(items)
         })
         viewModel.errorLiveData.observe(viewLifecycleOwner, EventObserver { message ->
