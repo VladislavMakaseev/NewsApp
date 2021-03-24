@@ -9,6 +9,7 @@ import retrofit2.Response
 import timber.log.Timber
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
+import com.vi.newsapp.domain.articles.Article as DomainArticles
 
 class ArticlesRepository(
     private val api: Api,
@@ -38,6 +39,10 @@ class ArticlesRepository(
             })
         }
         return addArticles(listOfArticle)
+    }
+
+    override suspend fun getArticles(): List<DomainArticles> {
+        return articlesDao.getAll().map { articleMapper.toArticle(it) }
     }
 
     private suspend fun addArticles(articles: List<Article>): Boolean {

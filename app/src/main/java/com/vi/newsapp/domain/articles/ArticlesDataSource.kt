@@ -4,4 +4,6 @@ interface ArticlesDataSource {
 
     suspend fun loadArticles(): Boolean
 
+    suspend fun getArticles(): List<Article>
+
 }

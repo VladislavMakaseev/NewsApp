@@ -8,7 +8,9 @@ import com.vi.newsapp.data.articles.NetworkService
 import com.vi.newsapp.data.db.AppDatabase
 import com.vi.newsapp.domain.app.AppDataSource
 import com.vi.newsapp.domain.articles.ArticlesDataSource
+import com.vi.newsapp.domain.articles.GetArticlesByDate
 import com.vi.newsapp.domain.articles.LoadArticles
+import com.vi.newsapp.presentation.article.ArticlesViewModel
 import com.vi.newsapp.presentation.splash.SplashViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -55,6 +57,18 @@ val appModule = module {
     single {
         LoadArticles(
             articlesDataSource = get()
+        )
+    }
+
+    single {
+        GetArticlesByDate(
+            articlesDataSource = get()
+        )
+    }
+
+    viewModel {
+        ArticlesViewModel(
+            getArticlesByDate = get()
         )
     }
 
