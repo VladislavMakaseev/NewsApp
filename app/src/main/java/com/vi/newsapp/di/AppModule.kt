@@ -7,7 +7,6 @@ import com.vi.newsapp.data.articles.ArticlesRepository
 import com.vi.newsapp.data.articles.NetworkService
 import com.vi.newsapp.data.db.AppDatabase
 import com.vi.newsapp.domain.app.AppDataSource
-import com.vi.newsapp.domain.articles.AddArticles
 import com.vi.newsapp.domain.articles.ArticlesDataSource
 import com.vi.newsapp.domain.articles.LoadArticles
 import com.vi.newsapp.presentation.splash.SplashViewModel
@@ -59,16 +58,9 @@ val appModule = module {
         )
     }
 
-    single {
-        AddArticles(
-            articlesDataSource = get()
-        )
-    }
-
     viewModel {
         SplashViewModel(
-            loadArticles = get(),
-            addArticles = get()
+            loadArticles = get()
         )
     }
 

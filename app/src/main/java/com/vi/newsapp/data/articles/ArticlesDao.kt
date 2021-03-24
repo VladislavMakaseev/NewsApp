@@ -14,6 +14,9 @@ interface ArticlesDao {
     @Insert
     fun insert(entities: List<ArticleEntity>)
 
+    @Query("SELECT COUNT(id) FROM articles")
+    fun count(): Int
+
     @Update
     fun update(entities: List<ArticleEntity>)
 

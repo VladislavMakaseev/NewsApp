@@ -4,7 +4,8 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class Article(
-    @SerializedName("source") @Expose
+    @SerializedName("source")
+    @Expose
     var source: Source? = null,
 
     @SerializedName("author")

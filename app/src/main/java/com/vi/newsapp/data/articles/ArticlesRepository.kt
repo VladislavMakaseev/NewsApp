@@ -16,9 +16,8 @@ class ArticlesRepository(
     private val articleMapper: ArticleMapper
 ) : ArticlesDataSource {
 
-    override suspend fun loadArticles(): List<Article> {
-        articlesDao.clear()
-        return suspendCoroutine { coroutine ->
+    override suspend fun loadArticles(): Boolean {
+        val listOfArticle: List<Article> = suspendCoroutine { coroutine ->
             val call = api.getArticles()
             call.enqueue(object : Callback<Example> {
                 override fun onResponse(
@@ -27,7 +26,9 @@ class ArticlesRepository(
                 ) {
                     if (response.isSuccessful) {
                         val example = response.body()
-                        example?.articles?.let { coroutine.resume(it) }
+                        example?.articles?.let {
+                            coroutine.resume(it)
+                        }
                     }
                 }
 
@@ -36,9 +37,10 @@ class ArticlesRepository(
                 }
             })
         }
+        return addArticles(listOfArticle)
     }
 
-    override suspend fun addArticles(articles: List<Article>) {
+    private suspend fun addArticles(articles: List<Article>): Boolean {
         articles.let {
             val articleEntities = it.map { article ->
                 ArticleEntity(
@@ -51,7 +53,9 @@ class ArticlesRepository(
                     content = article.content ?: ""
                 )
             }
+            articlesDao.clear()
             articlesDao.insert(articleEntities)
+            return articlesDao.count() > 0
         }
     }
 
