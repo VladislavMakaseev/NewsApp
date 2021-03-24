@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface Api {
 
-    @GET("in.json")
+    @GET("NewsAPI/top-headlines/category/science/in.json")
     fun getArticles(): Call<Example>
 
 }

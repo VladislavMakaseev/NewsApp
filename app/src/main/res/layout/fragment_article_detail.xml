@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp"
+        android:padding="16dp"
         >
 
         <TextView
@@ -25,6 +25,8 @@
             android:id="@+id/ivImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:scaleType="centerInside"
             tools:src="@drawable/ic_launcher_foreground"
             />
@@ -33,6 +35,8 @@
             android:id="@+id/tvContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             tools:text="content"
@@ -42,6 +46,8 @@
             android:id="@+id/tvDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             tools:text="date"

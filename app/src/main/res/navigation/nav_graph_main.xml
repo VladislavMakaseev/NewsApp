@@ -6,7 +6,7 @@
     >
     <fragment
         android:id="@+id/articlesFragment"
-        android:name="com.vi.newsapp.presentation.article.ArticlesFragment"
+        android:name="com.vi.newsapp.presentation.articles.ArticlesFragment"
         >
         <action
             android:id="@+id/action_mainFragment_to_detailArticleFragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailArticleFragment"
-        android:name="com.vi.newsapp.presentation.detailarticle.DetailArticleFragment"
+        android:name="com.vi.newsapp.presentation.detail.DetailArticleFragment"
         >
         <argument
             android:name="id"

@@ -1,4 +1,4 @@
-package com.vi.newsapp.presentation.article
+package com.vi.newsapp.presentation.articles
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +14,7 @@ import com.vi.newsapp.R
 import com.vi.newsapp.base.event.EventObserver
 import com.vi.newsapp.databinding.FragmentArticleBinding
 import com.vi.newsapp.domain.articles.Article
-import com.vi.newsapp.presentation.article.delegate.ArticleDelegate
+import com.vi.newsapp.presentation.articles.delegate.ArticleDelegate
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ArticlesFragment : Fragment() {

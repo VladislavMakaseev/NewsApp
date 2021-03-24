@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 abstract class NetworkService  {
 
     companion object {
-        private const val BASE_URL = "https://saurav.tech/NewsAPI/top-headlines/category/science/"
+        private const val BASE_URL = "https://saurav.tech/"
         private var retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

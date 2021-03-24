@@ -1,6 +1,5 @@
 package com.vi.newsapp.di
 
-import android.content.Context
 import com.vi.newsapp.data.articles.ArticleMapper
 import com.vi.newsapp.data.articles.ArticlesRepository
 import com.vi.newsapp.data.articles.NetworkService
@@ -9,20 +8,14 @@ import com.vi.newsapp.domain.articles.ArticlesDataSource
 import com.vi.newsapp.domain.articles.GetArticleById
 import com.vi.newsapp.domain.articles.GetArticlesByDate
 import com.vi.newsapp.domain.articles.LoadArticles
-import com.vi.newsapp.presentation.article.ArticlesViewModel
-import com.vi.newsapp.presentation.detailarticle.DetailArticleViewModel
+import com.vi.newsapp.presentation.articles.ArticlesViewModel
+import com.vi.newsapp.presentation.detail.DetailArticleViewModel
 import com.vi.newsapp.presentation.splash.SplashViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-const val APP_PREFS_NAME = "app_prefs"
-
-val appModule = module {
-
-    single {
-        androidContext().getSharedPreferences(APP_PREFS_NAME, Context.MODE_PRIVATE)
-    }
+val articleModule = module {
 
     single {
         NetworkService.createApi()

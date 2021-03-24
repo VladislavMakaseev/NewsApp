@@ -1,4 +1,4 @@
-package com.vi.newsapp.presentation.detailarticle
+package com.vi.newsapp.presentation.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater

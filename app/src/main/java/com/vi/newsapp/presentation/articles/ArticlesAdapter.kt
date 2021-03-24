@@ -1,4 +1,4 @@
-package com.vi.newsapp.presentation.article
+package com.vi.newsapp.presentation.articles
 
 import com.vi.newsapp.base.adapter.BaseDelegationAdapter
 

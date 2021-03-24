@@ -1,4 +1,4 @@
-package com.vi.newsapp.presentation.article.delegate
+package com.vi.newsapp.presentation.articles.delegate
 
 import android.content.Context
 import android.view.LayoutInflater

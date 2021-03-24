@@ -14,7 +14,7 @@ class SplashViewModel(
 ) : ViewModel() {
 
     private val _articlesAddedLiveData = MutableLiveData<Boolean>()
-    val articlesAddedLiveData = _articlesAddedLiveData as LiveData<Boolean>
+    val articlesAddedLiveData: LiveData<Boolean> = _articlesAddedLiveData
 
     init {
         loadItems()

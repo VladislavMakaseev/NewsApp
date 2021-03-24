@@ -1,4 +1,4 @@
-package com.vi.newsapp.presentation.detailarticle
+package com.vi.newsapp.presentation.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -17,10 +17,10 @@ class DetailArticleViewModel(
 ) : ViewModel() {
 
     private val _itemsLiveData = MutableLiveData<Article>()
-    val itemsLiveData = _itemsLiveData as LiveData<Article>
+    val itemsLiveData: LiveData<Article> = _itemsLiveData
 
     private val _errorLiveData = MutableLiveData<Event<String?>>()
-    val errorLiveData = _errorLiveData as LiveData<Event<String?>>
+    val errorLiveData: LiveData<Event<String?>> = _errorLiveData
 
     init {
         getArticleById()

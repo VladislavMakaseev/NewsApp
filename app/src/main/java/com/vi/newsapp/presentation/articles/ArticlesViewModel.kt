@@ -1,4 +1,4 @@
-package com.vi.newsapp.presentation.article
+package com.vi.newsapp.presentation.articles
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,13 +16,13 @@ class ArticlesViewModel(
 ) : ViewModel() {
 
     private val _loadingLiveData = MutableLiveData<Boolean>()
-    val loadingLiveData = _loadingLiveData as LiveData<Boolean>
+    val loadingLiveData: LiveData<Boolean> = _loadingLiveData
 
     private val _articlesLiveData = MutableLiveData<List<Article>>()
-    val articlesLiveData = _articlesLiveData as LiveData<List<Article>>
+    val articlesLiveData: LiveData<List<Article>> = _articlesLiveData
 
     private val _errorLiveData = MutableLiveData<Event<String?>>()
-    val errorLiveData = _errorLiveData as LiveData<Event<String?>>
+    val errorLiveData: LiveData<Event<String?>> = _errorLiveData
 
     init {
         loadItems()
@@ -32,6 +32,7 @@ class ArticlesViewModel(
     private var filteredArticles = listOf<Article>()
 
     fun filterArticles(text: String) {
+        emitLoading(true)
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 filteredArticles = allArticles.filter {
@@ -44,10 +45,12 @@ class ArticlesViewModel(
                 Timber.e(t)
                 emitError(t)
             }
+            emitLoading(false)
         }
     }
 
     fun allArticles() {
+        emitLoading(true)
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 emitItems(allArticles)
@@ -55,6 +58,7 @@ class ArticlesViewModel(
                 Timber.e(t)
                 emitError(t)
             }
+            emitLoading(false)
         }
     }
 
