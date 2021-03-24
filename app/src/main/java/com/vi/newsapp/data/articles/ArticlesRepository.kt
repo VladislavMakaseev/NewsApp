@@ -45,6 +45,10 @@ class ArticlesRepository(
         return articlesDao.getAll().map { articleMapper.toArticle(it) }
     }
 
+    override suspend fun getArticle(id: Long): DomainArticles {
+        return articleMapper.toArticle(articlesDao.getArticleById(id))
+    }
+
     private suspend fun addArticles(articles: List<Article>): Boolean {
         articles.let {
             val articleEntities = it.map { article ->

@@ -8,19 +8,20 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.vi.newsapp.R
 import com.vi.newsapp.base.event.EventObserver
-import com.vi.newsapp.databinding.FragmentMainBinding
+import com.vi.newsapp.databinding.FragmentArticleBinding
 import com.vi.newsapp.domain.articles.Article
 import com.vi.newsapp.presentation.article.delegate.ArticleDelegate
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class ArticlesFragment : Fragment() {
 
-    private var _binding: FragmentMainBinding? = null
+    private var _binding: FragmentArticleBinding? = null
     private val binding get() = _binding!!
 
+    private val navController by lazy { findNavController() }
     private val viewModel: ArticlesViewModel by viewModel()
 
     private lateinit var adapter: ArticlesAdapter
@@ -29,7 +30,7 @@ class ArticlesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        _binding = FragmentArticleBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -50,7 +51,11 @@ class ArticlesFragment : Fragment() {
                     ctx,
                     object : ArticleDelegate.OnClickListener {
                         override fun onItemClick(article: Article, position: Int) {
-                            TODO("Not yet implemented")
+                            navController.navigate(
+                                ArticlesFragmentDirections.actionMainFragmentToDetailArticleFragment(
+                                    id = article.id
+                                )
+                            )
                         }
                     })
             )
@@ -62,7 +67,6 @@ class ArticlesFragment : Fragment() {
             showOrHideLoading(isLoading)
         })
         viewModel.articlesLiveData.observe(viewLifecycleOwner, { items ->
-            Timber.d("kek:: items = $items")
             adapter.add(items)
         })
         viewModel.errorLiveData.observe(viewLifecycleOwner, EventObserver { message ->

@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    app:startDestination="@id/mainFragment"
+    app:startDestination="@id/articlesFragment"
     >
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/articlesFragment"
         android:name="com.vi.newsapp.presentation.article.ArticlesFragment"
-        android:label="MainFragment"
-        />
+        >
+        <action
+            android:id="@+id/action_mainFragment_to_detailArticleFragment"
+            app:destination="@id/detailArticleFragment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/detailArticleFragment"
+        android:name="com.vi.newsapp.presentation.detailarticle.DetailArticleFragment"
+        >
+        <argument
+            android:name="id"
+            app:argType="long"
+            />
+    </fragment>
 </navigation>

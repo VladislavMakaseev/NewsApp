@@ -11,6 +11,9 @@ interface ArticlesDao {
     @Query("SELECT * FROM articles")
     fun getAll(): List<ArticleEntity>
 
+    @Query("SELECT * FROM articles WHERE id = :id")
+    fun getArticleById(id: Long): ArticleEntity
+
     @Insert
     fun insert(entities: List<ArticleEntity>)
 

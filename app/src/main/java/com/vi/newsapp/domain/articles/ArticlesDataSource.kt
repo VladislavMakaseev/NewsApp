@@ -6,4 +6,6 @@ interface ArticlesDataSource {
 
     suspend fun getArticles(): List<Article>
 
+    suspend fun getArticle(id: Long): Article
+
 }
